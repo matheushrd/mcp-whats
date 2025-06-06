@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init
+  namespace: mcp-platform
+data:
+  init.sql: |
+    -- [Include the entire init.sql content here]

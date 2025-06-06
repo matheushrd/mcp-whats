@@ -1,0 +1,46 @@
+# FastAPI and dependencies
+fastapi==0.108.0
+uvicorn[standard]==0.25.0
+python-multipart==0.0.6
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# Database
+asyncpg==0.29.0
+sqlalchemy==2.0.23
+alembic==1.13.1
+
+# Redis
+redis==5.0.1
+
+# Google APIs
+google-api-python-client==2.111.0
+google-auth==2.25.2
+google-auth-httplib2==0.2.0
+google-generativeai==0.3.2
+
+# HTTP Client
+aiohttp==3.9.1
+httpx==0.25.2
+
+# Authentication and Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# Utilities
+python-dotenv==1.0.0
+pytz==2023.3
+tenacity==8.2.3
+
+# Logging
+loguru==0.7.2
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+httpx==0.25.2
+
+# Development
+black==23.12.1
+flake8==7.0.0
+mypy==1.7.1

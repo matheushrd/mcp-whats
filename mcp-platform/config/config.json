@@ -1,0 +1,53 @@
+// {
+//   "path_pattern": "/{client_name}/{environment}",
+//   "argocd": {
+//     "namespace": "argocd",
+//     "repo_url": "https://github.com/your-org/mcp-manifests.git",
+//     "branch": "main"
+//   },
+//   "clients": [
+//     {
+//       "client_name": "comercial-guanabara",
+//       "environments": {
+//         "development": true,
+//         "staging": true,
+//         "production": false
+//       },
+//       "credentials_file": "secrets/comercial-guanabara.env",
+//       "resources": {
+//         "limits": {
+//           "cpu": "500m",
+//           "memory": "512Mi"
+//         },
+//         "requests": {
+//           "cpu": "250m",
+//           "memory": "256Mi"
+//         }
+//       }
+//     },
+//     {
+//       "client_name": "salao-beleza",
+//       "environments": {
+//         "development": true,
+//         "staging": false,
+//         "production": true
+//       },
+//       "credentials_file": "secrets/salao-beleza.env",
+//       "resources": {
+//         "limits": {
+//           "cpu": "1000m",
+//           "memory": "1Gi"
+//         },
+//         "requests": {
+//           "cpu": "500m",
+//           "memory": "512Mi"
+//         }
+//       }
+//     }
+//   ],
+//   "database": {
+//     "host": "postgres-service.mcp-platform.svc.cluster.local",
+//     "port": 5432,
+//     "name": "mcp_platform"
+//   }
+// }

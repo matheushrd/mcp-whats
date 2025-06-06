@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-server
+  namespace: {{ namespace }}
+  labels:
+    app: mcp-server
+    client: {{ client_name }}
+    environment: {{ environment }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mcp-server
+      client: {{ client_name }}
+  template:
+    metadata:
+      labels:
+        app: mcp-server
+        client: {{ client_name }}
+        environment: {{ environment }}
+    spec:
+      containers:
+      - name: mcp-server
+        image: your-registry/mcp-server:{{ image_tag }}
+        ports:
+        - containerPort: 8000
+        env:
+        - name: CLIENT_NAME
+          value: "{{ client_name }}"
+        - name: ENVIRONMENT
+          value: "{{ environment }}"
+        - name: DATABASE_HOST
+          value: "{{ database.host }}"
+        - name: DATABASE_PORT
+          value: "{{ database.port }}"
+        - name: DATABASE_NAME
+          value: "{{ database.name }}"
+        - name: DATABASE_USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ client_name }}-credentials
+              key: DATABASE_USER
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ client_name }}-credentials
+              key: DATABASE_PASSWORD
+        - name: GOOGLE_CALENDAR_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ client_name }}-credentials
+              key: GOOGLE_CALENDAR_API_KEY
+        - name: GOOGLE_CALENDAR_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ client_name }}-credentials
+              key: GOOGLE_CALENDAR_ID
+        - name: GEMINI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ client_name }}-credentials
+              key: GEMINI_API_KEY
+        - name: WHATSAPP_API_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: {{ client_name }}-credentials
+              key: WHATSAPP_API_TOKEN
+        - name: WHATSAPP_PHONE_NUMBER_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ client_name }}-credentials
+              key: WHATSAPP_PHONE_NUMBER_ID
+        resources:
+          {% if resources %}
+          limits:
+            cpu: {{ resources.limits.cpu }}
+            memory: {{ resources.limits.memory }}
+          requests:
+            cpu: {{ resources.requests.cpu }}
+            memory: {{ resources.requests.memory }}
+          {% else %}
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 250m
+            memory: 256Mi
+          {% endif %}
