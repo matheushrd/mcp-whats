@@ -43,10 +43,6 @@ env/
 *~
 .DS_Store
 
-# Environment files
-.env
-.env.*
-!.env.example
 
 # Secrets
 config/secrets/*
@@ -82,7 +78,6 @@ node_modules/
 Thumbs.db
 .DS_Store
 
-.env*
+
 *.conf
-.env
 teste*
